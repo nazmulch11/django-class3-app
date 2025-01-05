@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h3 {
+            color: #333;
+        }
+        .task {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .task a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .task a:hover {
+            text-decoration: underline;
+        }
+        .add-task {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .add-task:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<h3>Task List</h3>
+{% for task in tasks %}
+    <div class="task">
+        <p>{{ forloop.counter }}. <strong>{{ task.name }}</strong> - {{ task.get_status_display }}
+            (<a href="{% url 'tasks:task_update' task.id %}">Update</a> |
+            <a href="{% url 'tasks:task_delete' task.id %}">Delete</a>)
+        </p>
+    </div>
+{% endfor %}
+
+<a class="add-task" href="{% url 'tasks:task_create' %}"> + Add A New Task</a>
+</body>
+</html>

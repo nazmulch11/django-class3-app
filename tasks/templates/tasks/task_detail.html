@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h3 {
+            color: #333;
+        }
+        .task-detail {
+            background-color: #fff;
+            border: 2px solid #007BFF;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .task-detail p {
+            margin: 10px 0;
+        }
+        .task-detail a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .task-detail a:hover {
+            text-decoration: underline;
+        }
+        .task-detail .actions a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="task-detail">
+    <p> Task Name: {{ task.name }} | <a href="{% url 'tasks:task_update' task.id %}">Update</a> |
+        <a href="{% url 'tasks:task_delete' task.id %}">Delete</a>
+    </p>
+    <p> Task Status: {{ task.get_status_display }} </p>
+    <p class="actions"> <a href="{% url 'tasks:task_list' %}">View All Tasks</a> |
+        <a href="{% url 'tasks:task_create'%}">New Task</a>
+    </p>
+</div>
+</body>
+</html>
